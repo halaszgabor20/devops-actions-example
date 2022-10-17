@@ -12,36 +12,36 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    
+   
     steps:
     - uses: actions/checkout@v3
 
     - name: Use nodejs
       uses: actions/setup-node@v3
-      with: 
+      with:
         node-version: 18
         cache: 'npm'
 
-    - name: install NPM packages
+    - name: Install NPM packages
       run: npm install
 
-    - name: RUN test
-      run: npm rest
+    - name: Run test
+      run: npm test
     
     - name: Docker build
-      run: | 
+      run: |
         docker build --tag ${{ github.repository }}:${GITHUB_SHA::6} .
-        docker tag ${{ github.repository }}:${GITHUB_SHA::6} ${{ github.repository }}:latest
-        
+        docker tag ${{ github.repository }}:${GITHUB_SHA::6} ${{ github.repository }}:latest 
+      
+    
     - name: Docker vulnerability scan
       uses: anchore/scan-action@v3
       id: scan
       with:
         image: ${{ github.repository }}:latest
         fail-build: false
-        
-    - name: Publis vuln scan report
+
+    - name: Publish vuln scan report
       uses: github/codeql-action/upload-sarif@v2
       with:
-        sarif_file: ${{ steps.scan.output.sarif }}
-
+        sarif_file: ${{ steps.scan.outputs.sarif }}
