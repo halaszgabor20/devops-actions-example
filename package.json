@@ -6,16 +6,8 @@
   "scripts": {
     "test": "echo \"Successful test run\""
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/halaszgabor20/devops-actions-example.git"
-  },
   "author": "",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/halaszgabor20/devops-actions-example/issues"
-  },
-  "homepage": "https://github.com/halaszgabor20/devops-actions-example#readme",
   "dependencies": {
     "express": "^4.18.2"
   }
